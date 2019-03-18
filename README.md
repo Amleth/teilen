@@ -1,4 +1,4 @@
-# TEIlen
+# Teilen
 
 ## Installation
 
