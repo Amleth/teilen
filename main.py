@@ -1,6 +1,6 @@
 from pathlib import PurePath
 from PySide2 import QtGui
-from PySide2.QtCore import QDir, QFile, QIODevice, Qt, QTextStream
+from PySide2.QtCore import QDir, QFile, QIODevice, Qt, QTextStream, Signal
 from PySide2.QtWidgets import (
     QAction,
     QApplication,
@@ -27,6 +27,16 @@ FONT_FAMILY = "Menlo"
 FONT_SIZE = 14
 MENLO_14_CHARACTER_WIDTH = 8
 WIDEST_CHARACTER = "W"
+
+
+class MyQPlainTextEdit(QPlainTextEdit):
+    def keyPressEvent(self, event):
+        if event.key() == 16777219:  # delete previous character
+        	pass
+        elif event.key() == 16777223:  # delete next character
+            pass
+        else:
+            super().keyPressEvent(event)
 
 
 class App(QMainWindow):
@@ -57,7 +67,7 @@ class App(QMainWindow):
         #
 
         # The editor
-        self.plaintexteditor = QPlainTextEdit()
+        self.plaintexteditor = MyQPlainTextEdit()
 
         # A glimpse of the begining & the end of the selection
         self.selection_start = QLabel("—")
